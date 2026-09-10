@@ -46,7 +46,7 @@ gradlew.bat :app:testDebugUnitTest
 Debug APK: `app/build/outputs/apk/debug/app-debug.apk`
 Release AAB: `app/build/outputs/bundle/release/app-release.aab`
 
-Privacy policy: `https://xentros.github.io/vakit-widget/privacy.html` (`docs/privacy.html`, in-app Settings → About)
+Privacy policy: `https://xentros.github.io/public-vakit-widget/privacy.html` (`docs/privacy.html`, in-app Settings → About)
 
 ## Permissions
 

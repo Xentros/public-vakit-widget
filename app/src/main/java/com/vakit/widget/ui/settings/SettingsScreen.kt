@@ -487,7 +487,7 @@ private fun SettingsContent(
                     modifier = Modifier.clickable {
                         runCatching {
                             ctx.startActivity(
-                                Intent(Intent.ACTION_VIEW, Uri.parse("https://xentros.github.io/vakit-widget/privacy.html"))
+                                Intent(Intent.ACTION_VIEW, Uri.parse("https://xentros.github.io/public-vakit-widget/privacy.html"))
                             )
                         }
                     },
