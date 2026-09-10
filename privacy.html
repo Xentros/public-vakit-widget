@@ -32,7 +32,7 @@ ul{padding-left:20px}
 <li><code>INTERNET</code> – fetch prayer times and city search results from the API.</li>
 <li><code>ACCESS_COARSE_LOCATION</code> (approximate location) – optional, only when you open the Qibla tab and grant it. Used locally via <code>LocationManager.getLastKnownLocation(NETWORK_PROVIDER/GPS_PROVIDER)</code> to compute the bearing to the Kaaba (21.4225, 39.8262) on-device. If you deny, the Qibla compass shows a permission prompt and all other features work.</li>
 <li><code>POST_NOTIFICATIONS</code> – show prayer alarm notifications (Android 13+), only if you enable alarms.</li>
-<li><code>SCHEDULE_EXACT_ALARM / USE_EXACT_ALARM</code> – schedule punctual alarms you opt into.</li>
+<li><code>SCHEDULE_EXACT_ALARM</code> – schedule punctual alarms you opt into.</li>
 <li><code>RECEIVE_BOOT_COMPLETED</code> – restore alarms/widget scheduling after reboot.</li>
 <li><code>FOREGROUND_SERVICE / FOREGROUND_SERVICE_MEDIA_PLAYBACK</code> – play alarm sounds.</li>
 </ul>
