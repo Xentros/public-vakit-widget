@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy – Namaz Vakit Widget</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;line-height:1.6;max-width:800px;margin:0 auto;padding:24px;color:#222}
+h1{font-size:28px;margin-bottom:4px}
+.muted{color:#666;font-size:14px}
+h2{margin-top:32px;font-size:20px;border-bottom:1px solid #e5e5e5;padding-bottom:6px}
+a{color:#1a73e8}
+code{background:#f5f5f5;padding:2px 6px;border-radius:4px;font-size:14px}
+ul{padding-left:20px}
+</style>
+</head>
+<body>
+<h1>Privacy Policy – Namaz Vakit Widget</h1>
+<p class="muted">Package: <code>com.xentros.vakitwidget</code> &middot; Effective: 2026-09-10 &middot; Contact: <a href="mailto:xentros@users.noreply.github.com">xentros@users.noreply.github.com</a></p>
+
+<p>Namaz Vakit Widget (“the app”) shows Islamic prayer times (Imsak, Sunrise, Dhuhr, Asr, Maghrib, Isha) using the Diyanet data source and an optional Qibla compass. This policy explains what data the app accesses, what it sends, and what it does not.</p>
+
+<h2>Summary</h2>
+<ul>
+<li><strong>No account, no analytics, no ads, no tracking.</strong></li>
+<li><strong>Location (approximate) is used only on-device for the Qibla compass.</strong> It is not transmitted to our servers, not stored, and not shared with third parties.</li>
+<li><strong>City selection</strong> (country / city / place name you choose) is sent to the prayer-times API to fetch times. Precise device location is never sent to that API.</li>
+</ul>
+
+<h2>Permissions and why they are needed</h2>
+<ul>
+<li><code>INTERNET</code> – fetch prayer times and city search results from the API.</li>
+<li><code>ACCESS_COARSE_LOCATION</code> (approximate location) – optional, only when you open the Qibla tab and grant it. Used locally via <code>LocationManager.getLastKnownLocation(NETWORK_PROVIDER/GPS_PROVIDER)</code> to compute the bearing to the Kaaba (21.4225, 39.8262) on-device. If you deny, the Qibla compass shows a permission prompt and all other features work.</li>
+<li><code>POST_NOTIFICATIONS</code> – show prayer alarm notifications (Android 13+), only if you enable alarms.</li>
+<li><code>SCHEDULE_EXACT_ALARM / USE_EXACT_ALARM</code> – schedule punctual alarms you opt into.</li>
+<li><code>RECEIVE_BOOT_COMPLETED</code> – restore alarms/widget scheduling after reboot.</li>
+<li><code>FOREGROUND_SERVICE / FOREGROUND_SERVICE_MEDIA_PLAYBACK</code> – play alarm sounds.</li>
+</ul>
+
+<h2>Data sent to third parties</h2>
+<p>API base: <code>https://prayertimes.api.abdus.dev/</code> (Diyanet proxy). Endpoints: <code>/api/diyanet/countries</code>, <code>/api/diyanet/search</code>, <code>/api/diyanet/prayertimes</code> etc. The app sends only the city/country identifiers you selected (e.g. “Germany / Offenbach”) and the requested date range. The API returns times as <code>HH:mm</code> without timezone; the app maps them to an IANA timezone locally (<code>CountryTimeZones</code>). No precise location, advertising ID, or contacts are sent.</p>
+<p>Qibla location never leaves the device. Built-in alarm sounds are bundled (<code>azan_v1..v4.mp3</code>); custom sounds use a <code>content://</code> URI you pick and stay local.</p>
+
+<h2>Data stored on device</h2>
+<p>Settings and cached prayer times are stored locally with Jetpack DataStore (<code>AppDataStore</code>) as JSON – saved cities, active city, alarms enabled, sound choice, widget colors, and cached <code>DailyPrayerTimes</code>. No cloud backup beyond the standard Android auto-backup of the app’s private data (if enabled on the device).</p>
+
+<h2>Data sharing and selling</h2>
+<p>We do not sell, rent, or share personal data with third parties. The only external transfer is the city-based prayer-time request described above.</p>
+
+<h2>Data retention and deletion</h2>
+<p>Cached times refresh periodically. Removing a city or clearing app data / uninstalling deletes the local DataStore. Location is not retained.</p>
+
+<h2>Children’s privacy</h2>
+<p>The app is not directed to children under 13 and does not knowingly collect personal data.</p>
+
+<h2>Security</h2>
+<p>API calls use HTTPS. Local data is stored in the app’s private sandbox.</p>
+
+<h2>Your choices</h2>
+<ul>
+<li>Deny or revoke approximate location – Qibla compass will be unavailable, everything else works.</li>
+<li>Disable alarms or notifications in system settings.</li>
+<li>Clear data / uninstall to delete local cache.</li>
+</ul>
+
+<h2>Changes to this policy</h2>
+<p>We will update the policy and the effective date above and, where required, notify via the app listing. Continued use after changes means acceptance.</p>
+
+<h2>Contact</h2>
+<p>Questions: <a href="mailto:xentros@users.noreply.github.com">xentros@users.noreply.github.com</a> or open an issue at <a href="https://github.com/Xentros/vakit-widget">github.com/Xentros/vakit-widget</a>.</p>
+
+<h2>Data Safety (Play Console)</h2>
+<ul>
+<li>Location (approximate): accessed on-device for Qibla, <strong>not collected</strong> and <strong>not shared</strong>. If you consider “accessed” as “collected”, declare as transient/on-device processing, not stored, not shared.</li>
+<li>Personal info, financial, health, etc.: not collected.</li>
+<li>Encryption in transit: yes (HTTPS). Data deletion: via app clear/uninstall.</li>
+</ul>
+
+<p class="muted">This policy will be linked in Play Console → Store listing → Privacy policy and in-app (Settings → About).</p>
+</body>
+</html>

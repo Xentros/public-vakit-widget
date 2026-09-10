@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Exclude cached prayer times (stale dates/timezones); settings (including saved cities) remain backed up -->
+    <exclude domain="sharedpref" path="vakit_widget_state.preferences_pb" />
+</full-backup-content>

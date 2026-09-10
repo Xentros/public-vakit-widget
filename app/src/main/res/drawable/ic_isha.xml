@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- open crescent moon facing left -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M11.66,2.02 C17.41,1.82 22,6.42 22,12 c0,5.52 -4.48,10 -10,10 c-3.71,0 -6.93,-2.02 -8.66,-5.02 c7.51,-0.25 12.09,-8.43 8.32,-14.96 Z" />
+</vector>

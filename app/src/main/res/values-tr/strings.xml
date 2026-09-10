@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vakit Widget</string>
+
+    <!-- Prayer names -->
+    <string name="prayer_imsak">İmsak</string>
+    <string name="prayer_sunrise">Güneş</string>
+    <string name="prayer_dhuhr">Öğle</string>
+    <string name="prayer_asr">İkindi</string>
+    <string name="prayer_maghrib">Akşam</string>
+    <string name="prayer_isha">Yatsı</string>
+
+    <!-- Bottom navigation -->
+    <string name="tab_prayer_times">Vakitler</string>
+    <string name="tab_qibla">Kıble</string>
+    <string name="tab_settings">Ayarlar</string>
+
+    <!-- Qibla -->
+    <string name="qibla_permission_desc">Kıble yönünü bulmak için konum erişimine izin ver.</string>
+    <string name="qibla_permission_allow">Konuma izin ver</string>
+    <string name="qibla_waiting_location">Konum bekleniyor…</string>
+    <string name="qibla_heading">Kıble: %1$d°</string>
+    <string name="qibla_hint">Kırmızı işareti Kıble yönüne doğru tut.</string>
+
+    <!-- Home -->
+    <string name="home_upcoming_prayer">Sıradaki vakit</string>
+    <string name="home_countdown_to_go">kaldı</string>
+    <string name="home_countdown_to_go_value">%1$s kaldı</string>
+    <string name="home_stale_data">Vakitler güncellenemedi. Kayıtlı veriler gösteriliyor.</string>
+    <string name="home_no_data_title">Henüz vakit verisi yok</string>
+    <string name="home_no_data_message">Ayarlardan vakitleri yenile.</string>
+    <string name="home_add_city_title">Hoş geldin</string>
+    <string name="home_add_city_message">Vakitleri görmek için ilk şehrini ekle.</string>
+    <string name="home_add_city_button">Şehir ekle</string>
+    <string name="home_loading">Yükleniyor…</string>
+    <string name="home_next_prayer_is">Sıradaki vakit: %1$s saat %2$s</string>
+
+    <!-- Countdown -->
+    <string name="countdown_connector"> </string>
+    <string name="countdown_less_than_minute">bir dakikadan az</string>
+    <string name="countdown_compact_hours_minutes">%1$d sa %2$d dk</string>
+    <string name="countdown_compact_hours">%1$d sa</string>
+    <string name="countdown_compact_minutes">%1$d dk</string>
+
+    <plurals name="hour">
+        <item quantity="one">%1$d saat</item>
+        <item quantity="other">%1$d saat</item>
+    </plurals>
+    <plurals name="minute">
+        <item quantity="one">%1$d dakika</item>
+        <item quantity="other">%1$d dakika</item>
+    </plurals>
+
+    <!-- Settings sections -->
+    <string name="settings_location">Konum</string>
+    <string name="settings_provider">Vakit sağlayıcı</string>
+    <string name="settings_language">Dil</string>
+    <string name="language_system">Sistem</string>
+    <string name="language_system_desc">Telefonunuzun dilini kullanır.</string>
+    <string name="language_en">English</string>
+    <string name="language_de">Deutsch</string>
+    <string name="language_tr">Türkçe</string>
+    <string name="settings_alarms">Vakit alarmları</string>
+    <string name="settings_sounds">Alarm sesi</string>
+    <string name="settings_widget_appearance">Widget görünümü</string>
+    <string name="settings_data">Veri</string>
+    <string name="settings_about">Hakkında</string>
+
+    <!-- Cities -->
+    <string name="cities_title">Kayıtlı şehirler</string>
+    <string name="cities_add">Şehir ekle</string>
+    <string name="cities_add_title">Şehir ekle</string>
+    <string name="cities_add_first">İlk şehrini ekle</string>
+    <string name="cities_active">Aktif</string>
+    <string name="cities_make_active">Aktif yap</string>
+    <string name="cities_edit_label">Yeniden adlandır</string>
+    <string name="cities_remove">Kaldır</string>
+    <string name="cities_reorder_hint">Sıralamak için sürükle. İlk şehir aktif şehirdir.</string>
+    <string name="cities_max_reached">En fazla %1$d şehir kaydedebilirsin.</string>
+    <string name="cities_remove_confirm_title">Şehir kaldırılsın mı?</string>
+    <string name="cities_remove_confirm_message">%1$s kayıtlı şehirlerden kaldırılacak.</string>
+    <string name="cities_remove_confirm_ok">Kaldır</string>
+    <string name="cities_remove_confirm_cancel">Vazgeç</string>
+    <string name="cities_label_dialog_title">Şehri yeniden adlandır</string>
+    <string name="cities_label_dialog_hint">Ad (isteğe bağlı)</string>
+    <string name="cities_label_dialog_ok">Kaydet</string>
+    <string name="cities_label_dialog_cancel">Vazgeç</string>
+    <string name="cities_empty_country">Ülke yok</string>
+    <string name="cities_empty_city">Şehir yok</string>
+    <string name="cities_empty_region">Bölge yok</string>
+    <string name="cities_select_country">Ülke seç</string>
+    <string name="cities_select_city">Şehir seç</string>
+    <string name="cities_select_region">Bölge seç</string>
+    <string name="cities_search_hint">Şehir veya ilçe ara</string>
+    <string name="cities_search_no_results">Sonuç yok</string>
+    <string name="cities_search_error">Arama başarısız. Ülke seçerek göz atmayı dene.</string>
+    <string name="cities_save">Şehri kaydet</string>
+    <string name="cities_saved">Şehir kaydedildi</string>
+    <string name="cities_loading_countries">Ülkeler yükleniyor…</string>
+    <string name="cities_loading_cities">Şehirler yükleniyor…</string>
+    <string name="cities_loading_regions">Bölgeler yükleniyor…</string>
+    <string name="cities_loading_error">Yüklenemedi. Bağlantını kontrol et.</string>
+
+    <!-- Alarms -->
+    <string name="alarm_master">Vakit alarmları</string>
+    <string name="alarm_master_desc">Seçili vakitlerde ses çal</string>
+    <string name="alarm_exact_title">Kesin alarm erişimini etkinleştir</string>
+    <string name="alarm_exact_desc">Android, tam zamanında alarmlar için özel izin ister. Kesin alarmları izin vermek için sistem ayarlarını aç.</string>
+    <string name="alarm_exact_button">Ayarları aç</string>
+    <string name="alarm_notification_permission_desc">Vakit alarmlarını göstermek için bildirimlere izin ver.</string>
+    <string name="alarm_notification_permission_button">Bildirimlere izin ver</string>
+    <string name="alarm_channel_name">Vakit alarmları</string>
+    <string name="alarm_notification_title">%1$s vakti</string>
+    <string name="alarm_notification_text">%3$s\'da %1$s vakti %2$s.</string>
+    <string name="alarm_notification_stop">Durdur</string>
+    <string name="alarm_preview_play">Çal</string>
+    <string name="alarm_preview_stop">Önizlemeyi durdur</string>
+    <string name="alarm_sound_default">Varsayılan</string>
+    <string name="alarm_sound_chime">Zil</string>
+    <string name="alarm_sound_call">Nida</string>
+    <string name="alarm_sound_dawn">Şafak</string>
+    <string name="alarm_sound_custom">Özel ses</string>
+    <string name="alarm_sound_custom_pick">Ses dosyası seç</string>
+    <string name="alarm_sound_custom_clear">Varsayılanı kullan</string>
+    <string name="alarm_sound_unavailable">Seçilen ses dosyası artık mevcut değil.</string>
+    <string name="alarm_enabled_hint">Sadece tek tek etkinleştirilen vakitler çalar.</string>
+
+    <!-- Widget appearance -->
+    <string name="widget_appearance_background_color">Arka plan rengi</string>
+    <string name="widget_appearance_background_opacity">Arka plan opaklığı</string>
+    <string name="widget_appearance_foreground_color">Metin ve simge rengi</string>
+    <string name="widget_appearance_transparent">Şeffaf</string>
+    <string name="widget_appearance_opaque">Opak</string>
+    <string name="widget_appearance_percent">%1$d%%</string>
+
+    <!-- Data -->
+    <string name="data_last_updated">Son güncelleme: %1$s</string>
+    <string name="data_never_updated">Henüz veri yok</string>
+    <string name="data_refresh">Şimdi yenile</string>
+    <string name="data_refresh_desc">Aktif şehir için namaz vakitlerini yeniden indir.</string>
+    <string name="data_force_widget_update">Widget\'ı güncelle</string>
+    <string name="data_force_widget_update_desc">Ana ekrandaki widget\'ı yeniden eklemeden yeniden çiz.</string>
+    <string name="data_refreshing">Yenileniyor…</string>
+    <string name="data_refreshed">Güncellendi</string>
+    <string name="data_refresh_failed">Yenileme başarısız</string>
+    <string name="data_cached_until">%1$s tarihine kadar kayıtlı</string>
+
+    <!-- Provider -->
+    <string name="provider_diyanet">Diyanet</string>
+    <string name="provider_desc">Diyanet İşleri Başkanlığı vakitleri.</string>
+
+    <!-- About -->
+    <string name="about_version">Sürüm %1$s</string>
+    <string name="about_desc">Minimal bir vakit widget\'ı.</string>
+
+    <!-- General -->
+    <string name="action_cancel">Vazgeç</string>
+    <string name="action_ok">Tamam</string>
+    <string name="action_save">Kaydet</string>
+    <string name="error_network">Ağ hatası. Bağlantını kontrol et.</string>
+    <string name="error_timeout">Sunucu çok geç yanıt verdi.</string>
+    <string name="error_generic">Bir şey ters gitti.</string>
+    <string name="error_no_location">Bu konum mevcut değil.</string>
+
+    <!-- Widget -->
+    <string name="widget_description">%1$s için vakitler</string>
+    <string name="widget_preview_description">Vakit widget\'ı</string>
+</resources>

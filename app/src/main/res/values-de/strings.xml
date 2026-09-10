@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vakit Widget</string>
+
+    <!-- Prayer names -->
+    <string name="prayer_imsak">Imsak</string>
+    <string name="prayer_sunrise">Sonnenaufgang</string>
+    <string name="prayer_dhuhr">Mittag</string>
+    <string name="prayer_asr">Nachmittag</string>
+    <string name="prayer_maghrib">Abend</string>
+    <string name="prayer_isha">Nacht</string>
+
+    <!-- Bottom navigation -->
+    <string name="tab_prayer_times">Gebetszeiten</string>
+    <string name="tab_qibla">Qibla</string>
+    <string name="tab_settings">Einstellungen</string>
+
+    <!-- Qibla -->
+    <string name="qibla_permission_desc">Erlaube den Standortzugriff, um die Qibla-Richtung zu finden.</string>
+    <string name="qibla_permission_allow">Standort erlauben</string>
+    <string name="qibla_waiting_location">Warte auf Standort…</string>
+    <string name="qibla_heading">Qibla: %1$d°</string>
+    <string name="qibla_hint">Richte die rote Markierung auf die Qibla.</string>
+
+    <!-- Home -->
+    <string name="home_upcoming_prayer">Nächstes Gebet</string>
+    <string name="home_countdown_to_go">verbleibend</string>
+    <string name="home_countdown_to_go_value">noch %1$s</string>
+    <string name="home_stale_data">Gebetszeiten konnten nicht aktualisiert werden. Zeige gespeicherte Daten.</string>
+    <string name="home_no_data_title">Noch keine Gebetsdaten</string>
+    <string name="home_no_data_message">Öffne die Einstellungen und aktualisiere die Gebetszeiten.</string>
+    <string name="home_add_city_title">Willkommen</string>
+    <string name="home_add_city_message">Füge deine erste Stadt hinzu, um Gebetszeiten zu sehen.</string>
+    <string name="home_add_city_button">Stadt hinzufügen</string>
+    <string name="home_loading">Wird geladen…</string>
+    <string name="home_next_prayer_is">Nächstes Gebet: %1$s um %2$s</string>
+
+    <!-- Countdown -->
+    <string name="countdown_connector"> und </string>
+    <string name="countdown_less_than_minute">weniger als eine Minute</string>
+    <string name="countdown_compact_hours_minutes">%1$d Std. %2$d Min.</string>
+    <string name="countdown_compact_hours">%1$d Std.</string>
+    <string name="countdown_compact_minutes">%1$d Min.</string>
+
+    <plurals name="hour">
+        <item quantity="one">%1$d Stunde</item>
+        <item quantity="other">%1$d Stunden</item>
+    </plurals>
+    <plurals name="minute">
+        <item quantity="one">%1$d Minute</item>
+        <item quantity="other">%1$d Minuten</item>
+    </plurals>
+
+    <!-- Settings sections -->
+    <string name="settings_location">Standort</string>
+    <string name="settings_provider">Gebetszeiten-Anbieter</string>
+    <string name="settings_language">Sprache</string>
+    <string name="language_system">System</string>
+    <string name="language_system_desc">Verwendet die Sprache deines Geräts.</string>
+    <string name="language_en">English</string>
+    <string name="language_de">Deutsch</string>
+    <string name="language_tr">Türkçe</string>
+    <string name="settings_alarms">Gebetsalarme</string>
+    <string name="settings_sounds">Alarmton</string>
+    <string name="settings_widget_appearance">Widget-Design</string>
+    <string name="settings_data">Daten</string>
+    <string name="settings_about">Über</string>
+
+    <!-- Cities -->
+    <string name="cities_title">Gespeicherte Städte</string>
+    <string name="cities_add">Stadt hinzufügen</string>
+    <string name="cities_add_title">Stadt hinzufügen</string>
+    <string name="cities_add_first">Füge deine erste Stadt hinzu</string>
+    <string name="cities_active">Aktiv</string>
+    <string name="cities_make_active">Als aktiv festlegen</string>
+    <string name="cities_edit_label">Umbenennen</string>
+    <string name="cities_remove">Entfernen</string>
+    <string name="cities_reorder_hint">Zum Sortieren ziehen. Die erste Stadt ist die aktive Stadt.</string>
+    <string name="cities_max_reached">Du kannst bis zu %1$d Städte speichern.</string>
+    <string name="cities_remove_confirm_title">Stadt entfernen?</string>
+    <string name="cities_remove_confirm_message">%1$s wird aus deinen Städten entfernt.</string>
+    <string name="cities_remove_confirm_ok">Entfernen</string>
+    <string name="cities_remove_confirm_cancel">Abbrechen</string>
+    <string name="cities_label_dialog_title">Stadt umbenennen</string>
+    <string name="cities_label_dialog_hint">Name (optional)</string>
+    <string name="cities_label_dialog_ok">Speichern</string>
+    <string name="cities_label_dialog_cancel">Abbrechen</string>
+    <string name="cities_empty_country">Keine Länder verfügbar</string>
+    <string name="cities_empty_city">Keine Städte verfügbar</string>
+    <string name="cities_empty_region">Keine Regionen verfügbar</string>
+    <string name="cities_select_country">Land auswählen</string>
+    <string name="cities_select_city">Stadt auswählen</string>
+    <string name="cities_select_region">Region auswählen</string>
+    <string name="cities_search_hint">Stadt oder Bezirk suchen</string>
+    <string name="cities_search_no_results">Keine Ergebnisse</string>
+    <string name="cities_search_error">Suche fehlgeschlagen. Versuche die Auswahl nach Land.</string>
+    <string name="cities_save">Stadt speichern</string>
+    <string name="cities_saved">Stadt gespeichert</string>
+    <string name="cities_loading_countries">Länder werden geladen…</string>
+    <string name="cities_loading_cities">Städte werden geladen…</string>
+    <string name="cities_loading_regions">Regionen werden geladen…</string>
+    <string name="cities_loading_error">Konnte nicht geladen werden. Prüfe deine Verbindung.</string>
+
+    <!-- Alarms -->
+    <string name="alarm_master">Gebetsalarme</string>
+    <string name="alarm_master_desc">Spiele einen Ton zu den ausgewählten Gebetszeiten ab</string>
+    <string name="alarm_exact_title">Exakte Alarm-Berechtigung aktivieren</string>
+    <string name="alarm_exact_desc">Android verlangt eine besondere Berechtigung für pünktliche Alarme. Öffne die Systemeinstellungen, um exakte Alarme zu erlauben.</string>
+    <string name="alarm_exact_button">Einstellungen öffnen</string>
+    <string name="alarm_notification_permission_desc">Erlaube Benachrichtigungen, um Gebetsalarme anzuzeigen.</string>
+    <string name="alarm_notification_permission_button">Benachrichtigungen erlauben</string>
+    <string name="alarm_channel_name">Gebetsalarme</string>
+    <string name="alarm_notification_title">%1$s-Zeit</string>
+    <string name="alarm_notification_text">Es ist %1$s um %2$s in %3$s.</string>
+    <string name="alarm_notification_stop">Stopp</string>
+    <string name="alarm_preview_play">Abspielen</string>
+    <string name="alarm_preview_stop">Vorschau stoppen</string>
+    <string name="alarm_sound_default">Standard</string>
+    <string name="alarm_sound_chime">Glöckchen</string>
+    <string name="alarm_sound_call">Ruf</string>
+    <string name="alarm_sound_dawn">Morgendämmerung</string>
+    <string name="alarm_sound_custom">Eigener Ton</string>
+    <string name="alarm_sound_custom_pick">Audiodatei wählen</string>
+    <string name="alarm_sound_custom_clear">Standard verwenden</string>
+    <string name="alarm_sound_unavailable">Die gewählte Tondatei ist nicht mehr verfügbar.</string>
+    <string name="alarm_enabled_hint">Nur einzeln aktivierte Gebete werden klingeln.</string>
+
+    <!-- Widget appearance -->
+    <string name="widget_appearance_background_color">Hintergrundfarbe</string>
+    <string name="widget_appearance_background_opacity">Hintergrund-Deckkraft</string>
+    <string name="widget_appearance_foreground_color">Text- und Symbolfarbe</string>
+    <string name="widget_appearance_transparent">Transparent</string>
+    <string name="widget_appearance_opaque">Deckend</string>
+    <string name="widget_appearance_percent">%1$d%%</string>
+
+    <!-- Data -->
+    <string name="data_last_updated">Zuletzt aktualisiert: %1$s</string>
+    <string name="data_never_updated">Noch keine Daten</string>
+    <string name="data_refresh">Jetzt aktualisieren</string>
+    <string name="data_refresh_desc">Gebetszeiten für die aktive Stadt neu laden.</string>
+    <string name="data_force_widget_update">Widget aktualisieren</string>
+    <string name="data_force_widget_update_desc">Widget auf dem Startbildschirm neu rendern, ohne es neu hinzuzufügen.</string>
+    <string name="data_refreshing">Wird aktualisiert…</string>
+    <string name="data_refreshed">Aktualisiert</string>
+    <string name="data_refresh_failed">Aktualisierung fehlgeschlagen</string>
+    <string name="data_cached_until">Zwischengespeichert bis %1$s</string>
+
+    <!-- Provider -->
+    <string name="provider_diyanet">Diyanet</string>
+    <string name="provider_desc">Gebetszeiten von der Religionsbehörde (Diyanet).</string>
+
+    <!-- About -->
+    <string name="about_version">Version %1$s</string>
+    <string name="about_desc">Ein minimalistisches Gebetszeiten-Widget.</string>
+
+    <!-- General -->
+    <string name="action_cancel">Abbrechen</string>
+    <string name="action_ok">OK</string>
+    <string name="action_save">Speichern</string>
+    <string name="error_network">Netzwerkfehler. Bitte prüfe deine Verbindung.</string>
+    <string name="error_timeout">Der Server hat zu lange gebraucht.</string>
+    <string name="error_generic">Etwas ist schiefgelaufen.</string>
+    <string name="error_no_location">Dieser Ort ist nicht verfügbar.</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Gebetszeiten für %1$s</string>
+    <string name="widget_preview_description">Gebetszeiten-Widget</string>
+</resources>

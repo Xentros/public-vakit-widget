@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vakit Widget</string>
+
+    <!-- Prayer names -->
+    <string name="prayer_imsak">Imsak</string>
+    <string name="prayer_sunrise">Sunrise</string>
+    <string name="prayer_dhuhr">Dhuhr</string>
+    <string name="prayer_asr">Asr</string>
+    <string name="prayer_maghrib">Maghrib</string>
+    <string name="prayer_isha">Isha</string>
+
+    <!-- Bottom navigation -->
+    <string name="tab_prayer_times">Prayer Times</string>
+    <string name="tab_qibla">Qibla</string>
+    <string name="tab_settings">Settings</string>
+
+    <!-- Qibla -->
+    <string name="qibla_permission_desc">Allow location access to find the Qibla direction.</string>
+    <string name="qibla_permission_allow">Allow location</string>
+    <string name="qibla_waiting_location">Waiting for location…</string>
+    <string name="qibla_heading">Qibla: %1$d°</string>
+    <string name="qibla_hint">The red line points toward the Qibla.</string>
+
+    <!-- Home -->
+    <string name="home_upcoming_prayer">Upcoming Prayer</string>
+    <string name="home_countdown_to_go">to go</string>
+    <string name="home_countdown_to_go_value">%1$s to go</string>
+    <string name="home_stale_data">Could not refresh the prayer times. Showing cached data.</string>
+    <string name="home_no_data_title">No prayer data yet</string>
+    <string name="home_no_data_message">Open Settings and refresh the prayer times.</string>
+    <string name="home_add_city_title">Welcome</string>
+    <string name="home_add_city_message">Add your first city to see prayer times.</string>
+    <string name="home_add_city_button">Add city</string>
+    <string name="home_loading">Loading…</string>
+    <string name="home_next_prayer_is">Next prayer is %1$s at %2$s</string>
+
+    <!-- Countdown -->
+    <string name="countdown_connector"> and </string>
+    <string name="countdown_less_than_minute">less than a minute</string>
+    <string name="countdown_compact_hours_minutes">%1$dh %2$dm</string>
+    <string name="countdown_compact_hours">%1$dh</string>
+    <string name="countdown_compact_minutes">%1$dm</string>
+
+    <plurals name="hour">
+        <item quantity="one">%1$d hour</item>
+        <item quantity="other">%1$d hours</item>
+    </plurals>
+    <plurals name="minute">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+
+    <!-- Settings sections -->
+    <string name="settings_location">Location</string>
+    <string name="settings_provider">Prayer time provider</string>
+    <string name="settings_language">Language</string>
+    <string name="language_system">System</string>
+    <string name="language_system_desc">Uses the language of your phone.</string>
+    <string name="language_en">English</string>
+    <string name="language_de">Deutsch</string>
+    <string name="language_tr">Türkçe</string>
+    <string name="settings_alarms">Prayer alarms</string>
+    <string name="settings_sounds">Alarm sound</string>
+    <string name="settings_widget_appearance">Widget appearance</string>
+    <string name="settings_data">Data</string>
+    <string name="settings_about">About</string>
+
+    <!-- Cities -->
+    <string name="cities_title">Saved cities</string>
+    <string name="cities_add">Add city</string>
+    <string name="cities_add_title">Add city</string>
+    <string name="cities_add_first">Add your first city</string>
+    <string name="cities_active">Active</string>
+    <string name="cities_make_active">Set as active</string>
+    <string name="cities_edit_label">Rename</string>
+    <string name="cities_remove">Remove</string>
+    <string name="cities_reorder_hint">Drag to reorder. The first city is the active city.</string>
+    <string name="cities_max_reached">You can save up to %1$d cities.</string>
+    <string name="cities_remove_confirm_title">Remove city?</string>
+    <string name="cities_remove_confirm_message">%1$s will be removed from your saved cities.</string>
+    <string name="cities_remove_confirm_ok">Remove</string>
+    <string name="cities_remove_confirm_cancel">Cancel</string>
+    <string name="cities_label_dialog_title">Rename city</string>
+    <string name="cities_label_dialog_hint">Name (optional)</string>
+    <string name="cities_label_dialog_ok">Save</string>
+    <string name="cities_label_dialog_cancel">Cancel</string>
+    <string name="cities_empty_country">No countries available</string>
+    <string name="cities_empty_city">No cities available</string>
+    <string name="cities_empty_region">No regions available</string>
+    <string name="cities_select_country">Select country</string>
+    <string name="cities_select_city">Select city</string>
+    <string name="cities_select_region">Select region</string>
+    <string name="cities_search_hint">Search city or district</string>
+    <string name="cities_search_no_results">No results</string>
+    <string name="cities_search_error">Search failed. Try browsing by country.</string>
+    <string name="cities_save">Save city</string>
+    <string name="cities_saved">City saved</string>
+    <string name="cities_loading_countries">Loading countries…</string>
+    <string name="cities_loading_cities">Loading cities…</string>
+    <string name="cities_loading_regions">Loading regions…</string>
+    <string name="cities_loading_error">Could not load. Check your connection.</string>
+
+    <!-- Alarms -->
+    <string name="alarm_master">Prayer alarms</string>
+    <string name="alarm_master_desc">Play a sound at the selected prayer times</string>
+    <string name="alarm_exact_title">Enable exact alarm access</string>
+    <string name="alarm_exact_desc">Android requires special permission for punctual alarms. Open the system settings to allow exact alarms.</string>
+    <string name="alarm_exact_button">Open settings</string>
+    <string name="alarm_notification_permission_desc">Allow notifications to show prayer alarms.</string>
+    <string name="alarm_notification_permission_button">Allow notifications</string>
+    <string name="alarm_channel_name">Prayer alarms</string>
+    <string name="alarm_notification_title">%1$s time</string>
+    <string name="alarm_notification_text">It is %1$s at %2$s in %3$s.</string>
+    <string name="alarm_notification_stop">Stop</string>
+    <string name="alarm_preview_play">Play</string>
+    <string name="alarm_preview_stop">Stop preview</string>
+    <string name="alarm_sound_default">Azan V1</string>
+    <string name="alarm_sound_chime">Azan V2</string>
+    <string name="alarm_sound_call">Azan V3</string>
+    <string name="alarm_sound_dawn">Azan V4</string>
+    <string name="alarm_sound_custom">Custom sound</string>
+    <string name="alarm_sound_custom_pick">Choose audio file</string>
+    <string name="alarm_sound_custom_clear">Use default</string>
+    <string name="alarm_sound_unavailable">The selected sound file is not available anymore.</string>
+    <string name="alarm_enabled_hint">Only individually enabled prayers will ring.</string>
+
+    <!-- Widget appearance -->
+    <string name="widget_appearance_background_color">Background color</string>
+    <string name="widget_appearance_background_opacity">Background opacity</string>
+    <string name="widget_appearance_foreground_color">Text and icon color</string>
+    <string name="widget_appearance_transparent">Transparent</string>
+    <string name="widget_appearance_opaque">Opaque</string>
+    <string name="widget_appearance_percent">%1$d%%</string>
+
+    <!-- Data -->
+    <string name="data_last_updated">Last updated: %1$s</string>
+    <string name="data_never_updated">No data yet</string>
+    <string name="data_refresh">Refresh now</string>
+    <string name="data_refresh_desc">Re-download prayer times for the active city.</string>
+    <string name="data_force_widget_update">Update widget</string>
+    <string name="data_force_widget_update_desc">Re-render the home screen widget without re-adding it.</string>
+    <string name="data_refreshing">Refreshing…</string>
+    <string name="data_refreshed">Updated</string>
+    <string name="data_refresh_failed">Refresh failed</string>
+    <string name="data_cached_until">Cached until %1$s</string>
+
+    <!-- Provider -->
+    <string name="provider_diyanet">Diyanet</string>
+    <string name="provider_desc">Prayer times from the Presidency of Religious Affairs (Diyanet).</string>
+
+    <!-- About -->
+    <string name="about_version">Version %1$s</string>
+    <string name="about_desc">A minimal prayer times widget.</string>
+    <string name="about_privacy_policy">Privacy policy</string>
+    <string name="about_privacy_policy_desc">How location and city data are used.</string>
+
+    <!-- General -->
+    <string name="action_cancel">Cancel</string>
+    <string name="action_ok">OK</string>
+    <string name="action_save">Save</string>
+    <string name="error_network">Network error. Please check your connection.</string>
+    <string name="error_timeout">The server took too long to respond.</string>
+    <string name="error_generic">Something went wrong.</string>
+    <string name="error_no_location">This location is not available.</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Prayer times for %1$s</string>
+    <string name="widget_preview_description">Prayer times widget</string>
+</resources>
