@@ -8,13 +8,20 @@ import com.vakit.widget.VakitApplication
 import com.vakit.widget.data.api.LocationDto
 import com.vakit.widget.domain.model.City
 import com.vakit.widget.domain.model.MAX_SAVED_CITIES
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.Json
+import java.io.File
 
 sealed interface BrowseStep {
     data object Countries : BrowseStep
@@ -64,25 +71,58 @@ class AddCityViewModel(app: VakitApplication) : ViewModel() {
     private val citiesCache = mutableMapOf<String, List<String>>()
     private var allLocationsCache: List<City> = emptyList()
     private var prefetchDone = false
+    private val cacheFile: File get() = File(context.filesDir, "all_locations_cache.json")
+    private val cacheJson = Json { ignoreUnknownKeys = true }
+
+    private suspend fun loadCacheFromDisk(): Boolean = withContext(Dispatchers.IO) {
+        try {
+            val f = cacheFile
+            if (!f.exists() || f.length() == 0L) return@withContext false
+            val text = f.readText()
+            val dtos = cacheJson.decodeFromString<List<LocationDto>>(text)
+            allLocationsCache = dtos.map { it.toCity() }
+            // Populate citiesCache from loaded data for browse fallback
+            dtos.groupBy { it.country }.forEach { (c, list) ->
+                citiesCache[c] = list.map { it.city }.distinct()
+            }
+            prefetchDone = allLocationsCache.isNotEmpty()
+            return@withContext prefetchDone
+        } catch (_: Exception) { false }
+    }
+
+    private suspend fun saveCacheToDisk(dtos: List<LocationDto>) = withContext(Dispatchers.IO) {
+        try {
+            val text = cacheJson.encodeToString(dtos)
+            cacheFile.writeText(text)
+        } catch (_: Exception) { }
+    }
 
     private suspend fun prefetchAllForSearch() {
+        // Try disk cache first (instant, no network, no 429)
+        if (loadCacheFromDisk()) return
         try {
             val countries = runCatching { api.getCountries() }.getOrNull() ?: return
-            val all = mutableListOf<City>()
-            for (country in countries) {
-                val cities = runCatching { api.getCities(country) }.getOrNull() ?: continue
-                citiesCache[country] = cities
-                for (cityName in cities) {
-                    val locs = runCatching { api.getLocations(country, cityName) }.getOrNull() ?: continue
-                    for (dto in locs) {
-                        all.add(dto.toCity())
+            val allDtos = mutableListOf<LocationDto>()
+            coroutineScope {
+                val deferred = countries.map { country ->
+                    async {
+                        val cities = runCatching { api.getCities(country) }.getOrNull() ?: emptyList()
+                        if (cities.isNotEmpty()) synchronized(citiesCache) { citiesCache[country] = cities }
+                        val locs = cities.map { cityName ->
+                            async {
+                                runCatching { api.getLocations(country, cityName) }.getOrNull() ?: emptyList()
+                            }
+                        }.awaitAll().flatten()
+                        synchronized(allDtos) { allDtos.addAll(locs) }
                     }
-                    if (all.size > 5000) break
                 }
-                if (all.size > 5000) break
+                deferred.awaitAll()
             }
-            allLocationsCache = all
-            prefetchDone = true
+            if (allDtos.isNotEmpty()) {
+                saveCacheToDisk(allDtos)
+                allLocationsCache = allDtos.map { it.toCity() }.distinctBy { it.locationId }
+                prefetchDone = true
+            }
         } catch (_: Exception) { }
     }
 
@@ -164,9 +204,28 @@ class AddCityViewModel(app: VakitApplication) : ViewModel() {
         candidates.add(city.city)
         city.region?.split(" /", "/", " ")?.map { it.trim() }?.filter { it.isNotEmpty() }?.let { candidates.addAll(it) }
         candidates.add(city.country)
-        // Also split region by " / "
         city.region?.split(" / ")?.let { candidates.addAll(it) }
-        return candidates.minOfOrNull { c -> levenshtein(ql, c.lowercase()) } ?: Int.MAX_VALUE
+        return candidates.minOfOrNull { c -> minDistanceToCandidate(ql, c.lowercase()) } ?: Int.MAX_VALUE
+    }
+
+    private fun minDistanceToCandidate(query: String, target: String): Int {
+        var best = levenshtein(query, target)
+        if (target.contains(query)) return best - 10
+        if (query.length >= 3 && target.length >= query.length) {
+            val w = query.length
+            for (i in 0..target.length - w) {
+                val sub = target.substring(i, i + w)
+                best = minOf(best, levenshtein(query, sub))
+            }
+            if (query.length >= 4 && target.length > w) {
+                for (i in 0..target.length - w - 1) {
+                    if (i + w + 1 > target.length) break
+                    val sub = target.substring(i, i + w + 1)
+                    best = minOf(best, levenshtein(query, sub))
+                }
+            }
+        }
+        return best
     }
 
     private fun isFuzzyMatch(query: String, target: String): Boolean {
@@ -268,19 +327,21 @@ class AddCityViewModel(app: VakitApplication) : ViewModel() {
         val candidates = mutableListOf<String>()
         candidates.add(city.city)
         city.region?.let { r ->
-            // Region may be "FRANKFURT / ODER" -> split
             r.split("/", " / ", ",").map { it.trim() }.filter { it.isNotEmpty() }.forEach { candidates.add(it) }
             candidates.add(r)
         }
         candidates.add(city.country)
-        // Also split country if needed
+        // Prefer candidates that fuzzy-match the query
+        val fuzzy = candidates.filter { isFuzzyMatch(q, it) }
+        val pool = if (fuzzy.isNotEmpty()) fuzzy else candidates
         var best: String? = null
         var bestScore = Int.MAX_VALUE
         var bestContains = false
-        for (c in candidates) {
+        for (c in pool) {
             val cl = c.lowercase()
             val contains = cl.contains(q)
-            val dist = levenshtein(q, cl)
+            // Use minimal distance to any substring for ranking (handles Fank->Frankfurt)
+            val dist = minDistanceToCandidate(q, cl)
             // Prefer substring matches, then smallest distance
             val score = if (contains) dist - 10 else dist
             if (score < bestScore) {
