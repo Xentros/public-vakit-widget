@@ -220,6 +220,7 @@ private fun SettingsContent(
     onPickColor: (String) -> Unit,
 ) {
     val settings = state.settings
+    val previewContext = LocalContext.current
     var playingSoundKey by remember { mutableStateOf<String?>(null) }
 
     val handleSoundClick = { key: String? ->
@@ -229,9 +230,9 @@ private fun SettingsContent(
             onStopSound()
             playingSoundKey = null
         } else {
-            // Different sound -> stop current and play new
+            // Different sound -> stop current and play new (once, auto-reset when finished)
             onStopSound()
-            onPreviewSound(key)
+            SoundManager.play(previewContext, key) { playingSoundKey = null }
             playingSoundKey = effectiveKey
         }
     }
@@ -470,8 +471,8 @@ private fun SettingsContent(
                         val ctx = LocalContext.current
                         val version = remember {
                             try {
-                                ctx.packageManager.getPackageInfo(ctx.packageName, 0).versionName ?: "1.0.2"
-                            } catch (_: Exception) { "1.0.2" }
+                                ctx.packageManager.getPackageInfo(ctx.packageName, 0).versionName ?: "1.0.4"
+                            } catch (_: Exception) { "1.0.4" }
                         }
                         Text(stringResource(R.string.about_version, version))
                     },

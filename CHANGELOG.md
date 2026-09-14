@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.4] - 2026-09-10
+
+### Changed
+- App icon replaced with `Store_logo.png` (green mosque/compass, adaptive `store_logo_fg` + monochrome, legacy `mipmap-*` 48-192 px).
+- Alarm and preview sounds now play **once** (`SoundManager isLooping false`, `onCompletion` auto-stop); preview auto-resets `❚❚→▶`, alarm service `stopSelf()` on completion (fallback 3 min).
+
+## [1.0.3] - 2026-09-10
+
+### Fixed
+- Removed spurious `FOREGROUND_SERVICE_SPECIAL_USE` permission (kept `FOREGROUND_SERVICE` + `MEDIA_PLAYBACK` only for `PrayerAlarmService`).
+
+### Changed
+- Bumped `versionCode 4`, `versionName 1.0.3`, `targetSdk/compileSdk 36` with edge-to-edge `WindowInsets(0)` de-duplication and `enableEdgeToEdge()`.
+
+## [1.0.2] - 2026-09-10
+
+### Added
+- Privacy policy at `https://xentros.github.io/public-vakit-widget/privacy.html` (`docs/privacy.html`, in-app Settings → About) and proprietary `LICENSE.md`.
+- Backup rules (`backup_rules.xml` / `data_extraction_rules.xml`, `enableOnBackInvokedCallback`, `usesCleartextTraffic=false`, monochrome icon).
+
+### Changed
+- Azan sounds `azan_v1..v4` (metadata stripped) replace placeholders `Chime/Call/Dawn` → `Azan V1-V4`; `MAX_SAVED_CITIES 3→5`; `README` updated; signing via env/`~/.gradle/gradle.properties`.
+- `VakitApplication` `runBlocking` removed (async locale load, no ANR on widget/broadcast).
+
+### Fixed
+- `targetSdk 35→36` (Play requires 36 since 2026-08-31), widget preview encoding, alarm code collision `10000+`, `notificationId==0→1`.
+
 ## [Unreleased]
 
 ### Added

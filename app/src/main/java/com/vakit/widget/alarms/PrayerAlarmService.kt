@@ -74,9 +74,9 @@ class PrayerAlarmService : Service() {
             runCatching { startForeground(notificationId, notification) }
         }
 
-        SoundManager.play(this, soundUri)
+        SoundManager.play(this, soundUri) { stopSelf() }
 
-        // Stop automatically after a few minutes so the sound does not loop forever.
+        // Fallback stop in case completion doesn't fire
         mainHandler.removeCallbacks(autoStop)
         mainHandler.postDelayed(autoStop, AUTO_STOP_MILLIS)
         return START_NOT_STICKY

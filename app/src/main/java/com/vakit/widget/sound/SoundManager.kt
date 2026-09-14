@@ -42,7 +42,7 @@ object SoundManager {
      * the default chime) or a content URI. If the custom sound cannot be loaded
      * it falls back to the default chime instead of failing.
      */
-    fun play(context: Context, soundUri: String?) {
+    fun play(context: Context, soundUri: String?, onCompletion: (() -> Unit)? = null) {
         stop()
         val mp = MediaPlayer()
         try {
@@ -52,7 +52,11 @@ object SoundManager {
             } else {
                 mp.setDataSource(context, Uri.parse(soundUri))
             }
-            mp.isLooping = true
+            mp.isLooping = false
+            mp.setOnCompletionListener {
+                stop()
+                onCompletion?.invoke()
+            }
             mp.prepare()
             mp.start()
             player = mp
@@ -60,7 +64,11 @@ object SoundManager {
             runCatching {
                 mp.reset()
                 mp.setDataSource(context, Uri.parse("android.resource://${context.packageName}/${R.raw.azan_v1}"))
-                mp.isLooping = true
+                mp.isLooping = false
+                mp.setOnCompletionListener {
+                    stop()
+                    onCompletion?.invoke()
+                }
                 mp.prepare()
                 mp.start()
                 player = mp
