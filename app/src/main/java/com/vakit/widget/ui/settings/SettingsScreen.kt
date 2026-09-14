@@ -471,8 +471,8 @@ private fun SettingsContent(
                         val ctx = LocalContext.current
                         val version = remember {
                             try {
-                                ctx.packageManager.getPackageInfo(ctx.packageName, 0).versionName ?: "1.0.4"
-                            } catch (_: Exception) { "1.0.4" }
+                                ctx.packageManager.getPackageInfo(ctx.packageName, 0).versionName ?: "1.0.5"
+                            } catch (_: Exception) { "1.0.5" }
                         }
                         Text(stringResource(R.string.about_version, version))
                     },

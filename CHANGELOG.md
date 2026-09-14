@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.5] - 2026-09-14
+
+### Fixed
+- City search now substring + fuzzy (Levenshtein): `Pa`→Paris, `Fra`/`Fank`→Frankfurt. `api/search` exact fallback to client-side cached browse data with background prefetch.
+
+### Changed
+- Auto-name when adding city (label empty) now picks the part of `region · country · city` closest to the search query (e.g. `HESSEN \ ALMANYA \ FRANKFURT` with query `Frank` → `FRANKFURT` not `HESSEN`), prefilled in dialog but editable.
+
 ## [1.0.4] - 2026-09-10
 
 ### Changed

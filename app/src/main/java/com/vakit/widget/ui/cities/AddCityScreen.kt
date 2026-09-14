@@ -106,8 +106,10 @@ fun AddCityScreen(
     }
 
     saveFor?.let { city ->
+        val suggested = viewModel.getSuggestedLabel(city)
         SaveCityDialog(
             city = city,
+            initialLabel = suggested,
             canAdd = state.canAdd,
             onConfirm = { label -> viewModel.save(city, label) { saveFor = null; onClose() } },
             onDismiss = { saveFor = null },
@@ -229,11 +231,12 @@ private fun ErrorView(message: String) {
 @Composable
 private fun SaveCityDialog(
     city: City,
+    initialLabel: String = "",
     canAdd: Boolean,
     onConfirm: (String?) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    var label by remember(city) { mutableStateOf("") }
+    var label by remember(city, initialLabel) { mutableStateOf(initialLabel) }
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(city.city) },
