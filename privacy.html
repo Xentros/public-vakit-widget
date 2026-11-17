@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy – Namaz Vakit Widget</title>
+<title>Privacy Policy – Vakit Widget</title>
 <style>
 body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;line-height:1.6;max-width:800px;margin:0 auto;padding:24px;color:#222}
 h1{font-size:28px;margin-bottom:4px}
@@ -12,70 +12,209 @@ h2{margin-top:32px;font-size:20px;border-bottom:1px solid #e5e5e5;padding-bottom
 a{color:#1a73e8}
 code{background:#f5f5f5;padding:2px 6px;border-radius:4px;font-size:14px}
 ul{padding-left:20px}
+nav{margin:16px 0 8px;font-size:15px}
+nav a{margin-right:16px}
+section.lang{margin-top:56px;padding-top:16px;border-top:3px solid #e5e5e5}
+section.lang:first-of-type{margin-top:24px;border-top:0;padding-top:0}
 </style>
 </head>
 <body>
-<h1>Privacy Policy – Namaz Vakit Widget</h1>
-<p class="muted">Package: <code>com.xentros.vakitwidget</code> &middot; Effective: 2026-09-10 &middot; Contact: <a href="mailto:xentros@users.noreply.github.com">xentros@users.noreply.github.com</a></p>
 
-<p>Namaz Vakit Widget (“the app”) shows Islamic prayer times (Imsak, Sunrise, Dhuhr, Asr, Maghrib, Isha) using the Diyanet data source and an optional Qibla compass. This policy explains what data the app accesses, what it sends, and what it does not.</p>
+<nav>
+<a href="#en">English</a>
+<a href="#de">Deutsch</a>
+<a href="#tr">Türkçe</a>
+</nav>
+
+<!-- ===================================================== ENGLISH ===================================================== -->
+<section class="lang" id="en" lang="en">
+<h1>Privacy Policy – Vakit Widget</h1>
+<p class="muted">Package: <code>com.xentros.vakitwidget</code> &middot; Effective: 2026-11-17 &middot; Contact: <a href="mailto:xentros@users.noreply.github.com">xentros@users.noreply.github.com</a></p>
+
+<p>Vakit Widget (“the app”) shows Islamic prayer times (Imsak, Sunrise, Dhuhr, Asr, Maghrib, Isha) based on Diyanet data, as a home screen widget, in the app, and optionally as a notification. It also offers a Qibla compass and optional prayer alarms. This policy explains what data the app accesses, what it sends, and what it does not.</p>
 
 <h2>Summary</h2>
 <ul>
 <li><strong>No account, no analytics, no ads, no tracking.</strong></li>
-<li><strong>Location (approximate) is used only on-device for the Qibla compass.</strong> It is not transmitted to our servers, not stored, and not shared with third parties.</li>
-<li><strong>City selection</strong> (country / city / place name you choose) is sent to the prayer-times API to fetch times. Precise device location is never sent to that API.</li>
+<li><strong>City selection:</strong> to search for a city and to download its prayer times, the app sends the text you search for and the coordinates (latitude/longitude) of the city you selected to the prayer-time data provider.</li>
+<li><strong>Device location (approximate)</strong> is optional and only used on the device for the Qibla compass, and only if the selected city has no coordinates. It is never sent anywhere and not stored.</li>
+<li>Your settings (cities, widget look, alarms) stay on your device.</li>
 </ul>
 
 <h2>Permissions and why they are needed</h2>
 <ul>
-<li><code>INTERNET</code> – fetch prayer times and city search results from the API.</li>
-<li><code>ACCESS_COARSE_LOCATION</code> (approximate location) – optional, only when you open the Qibla tab and grant it. Used locally via <code>LocationManager.getLastKnownLocation(NETWORK_PROVIDER/GPS_PROVIDER)</code> to compute the bearing to the Kaaba (21.4225, 39.8262) on-device. If you deny, the Qibla compass shows a permission prompt and all other features work.</li>
-<li><code>POST_NOTIFICATIONS</code> – show prayer alarm notifications (Android 13+), only if you enable alarms.</li>
-<li><code>SCHEDULE_EXACT_ALARM</code> – schedule punctual alarms you opt into.</li>
-<li><code>RECEIVE_BOOT_COMPLETED</code> – restore alarms/widget scheduling after reboot.</li>
-<li><code>FOREGROUND_SERVICE / FOREGROUND_SERVICE_MEDIA_PLAYBACK</code> – play alarm sounds.</li>
+<li><code>INTERNET</code> – search cities and download prayer times from the data provider.</li>
+<li><code>ACCESS_COARSE_LOCATION</code> (approximate location) – optional; requested only when you use the Qibla tab. The Qibla direction is normally calculated from the coordinates of your selected city. Only when the city has no coordinates, the last known approximate device location is read locally (<code>LocationManager.getLastKnownLocation</code>) to compute the bearing to the Kaaba on the device. If you deny it, the Qibla compass uses the city if possible and all other features keep working.</li>
+<li><code>POST_NOTIFICATIONS</code> – show prayer alarm notifications and the optional permanent notification (Android 13+), only if you enable them.</li>
+<li><code>SCHEDULE_EXACT_ALARM</code> – schedule punctual prayer alarms you opt into.</li>
+<li><code>RECEIVE_BOOT_COMPLETED</code> – restore alarms, widget and notification updates after a reboot.</li>
+<li><code>FOREGROUND_SERVICE</code> / <code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code> – play the alarm sound.</li>
 </ul>
 
 <h2>Data sent to third parties</h2>
-<p>API base: <code>https://prayertimes.api.abdus.dev/</code> (Diyanet proxy). Endpoints: <code>/api/diyanet/countries</code>, <code>/api/diyanet/search</code>, <code>/api/diyanet/prayertimes</code> etc. The app sends only the city/country identifiers you selected (e.g. “Germany / Offenbach”) and the requested date range. The API returns times as <code>HH:mm</code> without timezone; the app maps them to an IANA timezone locally (<code>CountryTimeZones</code>). No precise location, advertising ID, or contacts are sent.</p>
-<p>Qibla location never leaves the device. Built-in alarm sounds are bundled (<code>azan_v1..v4.mp3</code>); custom sounds use a <code>content://</code> URI you pick and stay local.</p>
+<p>Prayer times and city search results are provided by a third-party Diyanet proxy API: <code>https://prayertimes.api.abdus.dev/</code>. The app makes two kinds of requests:</p>
+<ul>
+<li><code>/api/v1/diyanet/location?query=</code> – the text you type when searching for a city.</li>
+<li><code>/api/v1/diyanet/prayertimes?latitude=&amp;longitude=</code> – the coordinates of a city you selected (not your device location).</li>
+</ul>
+<p>As with any internet request, the provider's server technically receives your IP address and standard connection data. The app sends no account data, advertising ID, contacts or precise device location. The returned times are mapped to a time zone locally on the device.</p>
+<p>Qibla location never leaves the device. Built-in alarm sounds are bundled with the app; custom sounds use a file you pick and stay on the device.</p>
 
 <h2>Data stored on device</h2>
-<p>Settings and cached prayer times are stored locally with Jetpack DataStore (<code>AppDataStore</code>) as JSON – saved cities, active city, alarms enabled, sound choice, widget colors, and cached <code>DailyPrayerTimes</code>. No cloud backup beyond the standard Android auto-backup of the app’s private data (if enabled on the device).</p>
+<p>Settings and cached prayer times are stored locally with Jetpack DataStore: saved cities (with custom names and coordinates), the active city, language, alarm and notification settings, sound choice, widget look (colors, themes you saved, sizes, icon pack) and cached prayer times. There is no cloud backup other than the standard Android auto-backup of the app's private data, if enabled on your device.</p>
 
 <h2>Data sharing and selling</h2>
-<p>We do not sell, rent, or share personal data with third parties. The only external transfer is the city-based prayer-time request described above.</p>
+<p>We do not sell, rent or share personal data. The only external transfer is the city-based request to the prayer-time provider described above.</p>
 
 <h2>Data retention and deletion</h2>
-<p>Cached times refresh periodically. Removing a city or clearing app data / uninstalling deletes the local DataStore. Location is not retained.</p>
+<p>Cached times refresh periodically. Removing a city, clearing the app data or uninstalling the app deletes the local data. Device location is not retained.</p>
 
-<h2>Children’s privacy</h2>
+<h2>Children's privacy</h2>
 <p>The app is not directed to children under 13 and does not knowingly collect personal data.</p>
 
 <h2>Security</h2>
-<p>API calls use HTTPS. Local data is stored in the app’s private sandbox.</p>
+<p>All requests to the data provider use HTTPS. Local data is stored in the app's private storage.</p>
 
 <h2>Your choices</h2>
 <ul>
-<li>Deny or revoke approximate location – Qibla compass will be unavailable, everything else works.</li>
-<li>Disable alarms or notifications in system settings.</li>
-<li>Clear data / uninstall to delete local cache.</li>
+<li>Deny or revoke approximate location – the Qibla compass then works with your city's coordinates only, everything else is unaffected.</li>
+<li>Disable alarms and notifications in the app or in the system settings.</li>
+<li>Clear the app data or uninstall to delete the local data.</li>
 </ul>
 
 <h2>Changes to this policy</h2>
-<p>We will update the policy and the effective date above and, where required, notify via the app listing. Continued use after changes means acceptance.</p>
+<p>We will update this policy and the effective date above and, where required, notify via the app listing. Continued use after a change means acceptance.</p>
 
 <h2>Contact</h2>
-<p>Questions: <a href="mailto:xentros@users.noreply.github.com">xentros@users.noreply.github.com</a> or open an issue at <a href="https://github.com/Xentros/public-vakit-widget">github.com/Xentros/public-vakit-widget</a>.</p>
+<p>Questions: <a href="mailto:xentros@users.noreply.github.com">xentros@users.noreply.github.com</a> or open an issue at <a href="https://github.com/Xentros/vakit-widget">github.com/Xentros/vakit-widget</a>.</p>
+</section>
 
-<h2>Data Safety (Play Console)</h2>
+<!-- ===================================================== DEUTSCH ===================================================== -->
+<section class="lang" id="de" lang="de">
+<h1>Datenschutzerklärung – Vakit Widget</h1>
+<p class="muted">Paket: <code>com.xentros.vakitwidget</code> &middot; Gültig ab: 17.11.2026 &middot; Kontakt: <a href="mailto:xentros@users.noreply.github.com">xentros@users.noreply.github.com</a></p>
+
+<p>Vakit Widget („die App“) zeigt islamische Gebetszeiten (Imsak, Sonnenaufgang, Dhuhr, Asr, Maghrib, Isha) auf Basis der Diyanet-Daten als Widget auf dem Startbildschirm, in der App und optional als Benachrichtigung an. Außerdem bietet sie einen Qibla-Kompass und optionale Gebetsalarme. Diese Erklärung beschreibt, auf welche Daten die App zugreift, was sie sendet und was nicht.</p>
+
+<h2>Zusammenfassung</h2>
 <ul>
-<li>Location (approximate): accessed on-device for Qibla, <strong>not collected</strong> and <strong>not shared</strong>. If you consider “accessed” as “collected”, declare as transient/on-device processing, not stored, not shared.</li>
-<li>Personal info, financial, health, etc.: not collected.</li>
-<li>Encryption in transit: yes (HTTPS). Data deletion: via app clear/uninstall.</li>
+<li><strong>Kein Konto, keine Analyse, keine Werbung, kein Tracking.</strong></li>
+<li><strong>Städteauswahl:</strong> Für die Suche nach einer Stadt und das Laden ihrer Gebetszeiten sendet die App den Suchtext und die Koordinaten (Breiten-/Längengrad) der ausgewählten Stadt an den Anbieter der Gebetszeiten-Daten.</li>
+<li><strong>Der Gerätestandort (ungefähr)</strong> ist optional und wird nur auf dem Gerät für den Qibla-Kompass verwendet, und nur wenn die gewählte Stadt keine Koordinaten hat. Er wird nirgendwohin gesendet und nicht gespeichert.</li>
+<li>Deine Einstellungen (Städte, Widget-Aussehen, Alarme) bleiben auf deinem Gerät.</li>
 </ul>
 
-<p class="muted">This policy will be linked in Play Console → Store listing → Privacy policy and in-app (Settings → About).</p>
+<h2>Berechtigungen und wofür sie nötig sind</h2>
+<ul>
+<li><code>INTERNET</code> – Städte suchen und Gebetszeiten vom Datenanbieter laden.</li>
+<li><code>ACCESS_COARSE_LOCATION</code> (ungefährer Standort) – optional; wird nur angefragt, wenn du den Qibla-Tab nutzt. Die Qibla-Richtung wird normalerweise aus den Koordinaten deiner gewählten Stadt berechnet. Nur wenn die Stadt keine Koordinaten hat, wird der zuletzt bekannte ungefähre Gerätestandort lokal gelesen (<code>LocationManager.getLastKnownLocation</code>), um die Richtung zur Kaaba auf dem Gerät zu berechnen. Wenn du ablehnst, nutzt der Qibla-Kompass nach Möglichkeit die Stadt, alle anderen Funktionen laufen weiter.</li>
+<li><code>POST_NOTIFICATIONS</code> – Gebetsalarm-Benachrichtigungen und die optionale Dauerbenachrichtigung anzeigen (Android 13+), nur wenn du sie aktivierst.</li>
+<li><code>SCHEDULE_EXACT_ALARM</code> – pünktliche Gebetsalarme planen, die du aktivierst.</li>
+<li><code>RECEIVE_BOOT_COMPLETED</code> – Alarme sowie Widget- und Benachrichtigungs-Updates nach einem Neustart wiederherstellen.</li>
+<li><code>FOREGROUND_SERVICE</code> / <code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code> – den Alarmton abspielen.</li>
+</ul>
+
+<h2>An Dritte gesendete Daten</h2>
+<p>Gebetszeiten und Stadtsuchergebnisse stammen von einer Diyanet-Proxy-API eines Drittanbieters: <code>https://prayertimes.api.abdus.dev/</code>. Die App stellt zwei Arten von Anfragen:</p>
+<ul>
+<li><code>/api/v1/diyanet/location?query=</code> – der Text, den du bei der Stadtsuche eingibst.</li>
+<li><code>/api/v1/diyanet/prayertimes?latitude=&amp;longitude=</code> – die Koordinaten einer von dir gewählten Stadt (nicht dein Gerätestandort).</li>
+</ul>
+<p>Wie bei jeder Internetanfrage erhält der Server des Anbieters technisch bedingt deine IP-Adresse und übliche Verbindungsdaten. Die App sendet keine Kontodaten, keine Werbe-ID, keine Kontakte und keinen genauen Gerätestandort. Die gelieferten Zeiten werden lokal auf dem Gerät einer Zeitzone zugeordnet.</p>
+<p>Der Qibla-Standort verlässt das Gerät nie. Die eingebauten Alarmtöne sind in der App enthalten; eigene Töne nutzen eine von dir gewählte Datei und bleiben auf dem Gerät.</p>
+
+<h2>Auf dem Gerät gespeicherte Daten</h2>
+<p>Einstellungen und zwischengespeicherte Gebetszeiten werden lokal mit Jetpack DataStore gespeichert: gespeicherte Städte (mit eigenen Namen und Koordinaten), aktive Stadt, Sprache, Alarm- und Benachrichtigungseinstellungen, Tonauswahl, Widget-Aussehen (Farben, gespeicherte Themes, Größen, Symbolpaket) und zwischengespeicherte Gebetszeiten. Es gibt keine Cloud-Sicherung außer der üblichen Android-Auto-Sicherung der privaten App-Daten, sofern sie auf deinem Gerät aktiviert ist.</p>
+
+<h2>Weitergabe und Verkauf von Daten</h2>
+<p>Wir verkaufen, vermieten oder teilen keine personenbezogenen Daten. Die einzige externe Übertragung ist die oben beschriebene stadtbezogene Anfrage an den Anbieter der Gebetszeiten.</p>
+
+<h2>Speicherdauer und Löschung</h2>
+<p>Zwischengespeicherte Zeiten werden regelmäßig aktualisiert. Das Entfernen einer Stadt, das Löschen der App-Daten oder das Deinstallieren der App löscht die lokalen Daten. Der Gerätestandort wird nicht gespeichert.</p>
+
+<h2>Datenschutz für Kinder</h2>
+<p>Die App richtet sich nicht an Kinder unter 13 Jahren und erhebt wissentlich keine personenbezogenen Daten.</p>
+
+<h2>Sicherheit</h2>
+<p>Alle Anfragen an den Datenanbieter verwenden HTTPS. Lokale Daten liegen im privaten Speicher der App.</p>
+
+<h2>Deine Möglichkeiten</h2>
+<ul>
+<li>Den ungefähren Standort ablehnen oder widerrufen – der Qibla-Kompass nutzt dann nur die Koordinaten deiner Stadt, alles andere bleibt unberührt.</li>
+<li>Alarme und Benachrichtigungen in der App oder in den Systemeinstellungen deaktivieren.</li>
+<li>App-Daten löschen oder die App deinstallieren, um die lokalen Daten zu löschen.</li>
+</ul>
+
+<h2>Änderungen dieser Erklärung</h2>
+<p>Wir aktualisieren diese Erklärung und das oben genannte Datum und informieren, sofern erforderlich, über den Store-Eintrag. Die weitere Nutzung nach einer Änderung gilt als Zustimmung.</p>
+
+<h2>Kontakt</h2>
+<p>Fragen: <a href="mailto:xentros@users.noreply.github.com">xentros@users.noreply.github.com</a> oder ein Issue auf <a href="https://github.com/Xentros/vakit-widget">github.com/Xentros/vakit-widget</a>.</p>
+</section>
+
+<!-- ===================================================== TÜRKÇE ===================================================== -->
+<section class="lang" id="tr" lang="tr">
+<h1>Gizlilik Politikası – Vakit Widget</h1>
+<p class="muted">Paket: <code>com.xentros.vakitwidget</code> &middot; Yürürlük tarihi: 17.11.2026 &middot; İletişim: <a href="mailto:xentros@users.noreply.github.com">xentros@users.noreply.github.com</a></p>
+
+<p>Vakit Widget (“uygulama”), Diyanet verilerine dayanan namaz vakitlerini (İmsak, Güneş, Öğle, İkindi, Akşam, Yatsı) ana ekran widget'ı olarak, uygulama içinde ve isteğe bağlı olarak bildirim şeklinde gösterir. Ayrıca kıble pusulası ve isteğe bağlı vakit alarmları sunar. Bu politika, uygulamanın hangi verilere eriştiğini, neleri gönderdiğini ve neleri göndermediğini açıklar.</p>
+
+<h2>Özet</h2>
+<ul>
+<li><strong>Hesap, analiz, reklam ve izleme yoktur.</strong></li>
+<li><strong>Şehir seçimi:</strong> Bir şehri aramak ve namaz vakitlerini indirmek için uygulama, aradığınız metni ve seçtiğiniz şehrin koordinatlarını (enlem/boylam) vakit verisi sağlayıcısına gönderir.</li>
+<li><strong>Cihaz konumu (yaklaşık)</strong> isteğe bağlıdır; yalnızca cihaz üzerinde kıble pusulası için ve yalnızca seçili şehrin koordinatı yoksa kullanılır. Hiçbir yere gönderilmez ve saklanmaz.</li>
+<li>Ayarlarınız (şehirler, widget görünümü, alarmlar) cihazınızda kalır.</li>
+</ul>
+
+<h2>İzinler ve neden gerekli oldukları</h2>
+<ul>
+<li><code>INTERNET</code> – şehir aramak ve namaz vakitlerini veri sağlayıcısından indirmek.</li>
+<li><code>ACCESS_COARSE_LOCATION</code> (yaklaşık konum) – isteğe bağlıdır; yalnızca Kıble sekmesini kullandığınızda istenir. Kıble yönü normalde seçili şehrin koordinatlarından hesaplanır. Yalnızca şehrin koordinatı yoksa, Kâbe yönünü cihaz üzerinde hesaplamak için en son bilinen yaklaşık cihaz konumu yerel olarak okunur (<code>LocationManager.getLastKnownLocation</code>). İzni reddederseniz kıble pusulası mümkünse şehri kullanır ve diğer tüm özellikler çalışmaya devam eder.</li>
+<li><code>POST_NOTIFICATIONS</code> – vakit alarmı bildirimlerini ve isteğe bağlı kalıcı bildirimi göstermek (Android 13+); yalnızca bunları etkinleştirirseniz.</li>
+<li><code>SCHEDULE_EXACT_ALARM</code> – etkinleştirdiğiniz vakit alarmlarını tam zamanında kurmak.</li>
+<li><code>RECEIVE_BOOT_COMPLETED</code> – yeniden başlatmadan sonra alarmları, widget ve bildirim güncellemelerini geri yüklemek.</li>
+<li><code>FOREGROUND_SERVICE</code> / <code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code> – alarm sesini çalmak.</li>
+</ul>
+
+<h2>Üçüncü taraflara gönderilen veriler</h2>
+<p>Namaz vakitleri ve şehir arama sonuçları, üçüncü taraf bir Diyanet vekil API'sinden gelir: <code>https://prayertimes.api.abdus.dev/</code>. Uygulama iki tür istek yapar:</p>
+<ul>
+<li><code>/api/v1/diyanet/location?query=</code> – şehir ararken yazdığınız metin.</li>
+<li><code>/api/v1/diyanet/prayertimes?latitude=&amp;longitude=</code> – seçtiğiniz bir şehrin koordinatları (cihaz konumunuz değil).</li>
+</ul>
+<p>Her internet isteğinde olduğu gibi, sağlayıcının sunucusu teknik olarak IP adresinizi ve olağan bağlantı verilerini alır. Uygulama; hesap verisi, reklam kimliği, kişiler veya hassas cihaz konumu göndermez. Gelen vakitler cihaz üzerinde yerel olarak bir saat dilimiyle eşleştirilir.</p>
+<p>Kıble için kullanılan konum cihazdan asla çıkmaz. Yerleşik alarm sesleri uygulamayla birlikte gelir; özel sesler seçtiğiniz bir dosyayı kullanır ve cihazda kalır.</p>
+
+<h2>Cihazda saklanan veriler</h2>
+<p>Ayarlar ve önbelleğe alınan namaz vakitleri Jetpack DataStore ile yerel olarak saklanır: kayıtlı şehirler (özel adları ve koordinatlarıyla), etkin şehir, dil, alarm ve bildirim ayarları, ses seçimi, widget görünümü (renkler, kaydettiğiniz temalar, boyutlar, simge paketi) ve önbellekteki namaz vakitleri. Cihazınızda etkinse uygulamanın özel verilerinin standart Android otomatik yedeklemesi dışında bulut yedeği yoktur.</p>
+
+<h2>Verilerin paylaşılması ve satılması</h2>
+<p>Kişisel verileri satmaz, kiralamaz veya paylaşmayız. Tek harici aktarım, yukarıda açıklanan, şehre dayalı vakit isteğidir.</p>
+
+<h2>Saklama süresi ve silme</h2>
+<p>Önbellekteki vakitler düzenli olarak yenilenir. Bir şehri kaldırmak, uygulama verilerini temizlemek veya uygulamayı kaldırmak yerel verileri siler. Cihaz konumu saklanmaz.</p>
+
+<h2>Çocukların gizliliği</h2>
+<p>Uygulama 13 yaşın altındaki çocuklara yönelik değildir ve bilerek kişisel veri toplamaz.</p>
+
+<h2>Güvenlik</h2>
+<p>Veri sağlayıcıya yapılan tüm istekler HTTPS kullanır. Yerel veriler uygulamanın özel depolama alanında tutulur.</p>
+
+<h2>Seçenekleriniz</h2>
+<ul>
+<li>Yaklaşık konum iznini reddedin veya geri alın – kıble pusulası bu durumda yalnızca şehrinizin koordinatlarıyla çalışır, diğer her şey etkilenmez.</li>
+<li>Alarmları ve bildirimleri uygulamada veya sistem ayarlarında kapatın.</li>
+<li>Yerel verileri silmek için uygulama verilerini temizleyin veya uygulamayı kaldırın.</li>
+</ul>
+
+<h2>Bu politikadaki değişiklikler</h2>
+<p>Bu politikayı ve yukarıdaki yürürlük tarihini güncelleriz; gerekirse mağaza sayfası üzerinden bildiririz. Değişiklikten sonra kullanıma devam etmek kabul anlamına gelir.</p>
+
+<h2>İletişim</h2>
+<p>Sorularınız için: <a href="mailto:xentros@users.noreply.github.com">xentros@users.noreply.github.com</a> veya <a href="https://github.com/Xentros/vakit-widget">github.com/Xentros/vakit-widget</a> adresinde bir issue açın.</p>
+</section>
+
+<p class="muted" style="margin-top:48px">This policy is linked in the Play Console store listing and in the app (Settings → About). / Diese Erklärung ist im Play-Console-Store-Eintrag und in der App (Einstellungen → Info) verlinkt. / Bu politika Play Console mağaza sayfasında ve uygulamada (Ayarlar → Hakkında) bağlantılıdır.</p>
 </body>
 </html>
